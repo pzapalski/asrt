@@ -1,6 +1,6 @@
 {
   "name": "asrt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small library to verify preconditions and postconditions.",
   "scripts": {
     "build": "tsc -p src/tsconfig.json",
@@ -9,7 +9,8 @@
     "test": "npm run build && npm run test:rules && npm run test:integration",
     "test:rules": "tslint --test spec/rules/**/tslint.json",
     "test:integration": "jasmine --config=jasmine.json",
-    "test:mutation": "npx stryker run"
+    "test:mutation": "npx stryker run",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
