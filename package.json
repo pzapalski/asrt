@@ -21,9 +21,7 @@
     "invariants",
     "invariant",
     "hoare",
-    "design",
-    "by",
-    "contract",
+    "design by contract",
     "dbc"
   ],
   "author": "Piotr Zapalski",
