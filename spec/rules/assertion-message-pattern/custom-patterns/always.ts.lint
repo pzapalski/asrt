@@ -1,0 +1,13 @@
+always(condition);
+always(condition, variable);
+always(condition, 'abc', '[abcd-efgh]');
+always(condition, 'abc', '');
+                         ~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+always(condition, '', '[abcd-efgh]');
+                  ~~ [Assertion message 1 has to match /^.{3,}$/.]
+always(condition, 'ab', 'cd');
+                  ~~~~ [Assertion message 1 has to match /^.{3,}$/.]
+                        ~~~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+always(condition, 'abc', '[abcd-efgh]', '');
+always(condition, 'abc', '[abcd-efgh]', '', '');
+always(condition, variable, '[abcd-efgh]', '', '');

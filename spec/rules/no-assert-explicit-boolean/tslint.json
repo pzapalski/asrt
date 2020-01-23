@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "no-assert-explicit-boolean": true
+  },
+  "rulesDirectory": [
+    "../../../rules"
+  ]
+}

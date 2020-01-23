@@ -1,0 +1,5 @@
+always(condition === true);
+always(condition !== true);
+always(condition !== true, 'test');
+always(condition !== true, '', 'test');
+always(condition !== true, '', '', 'test');

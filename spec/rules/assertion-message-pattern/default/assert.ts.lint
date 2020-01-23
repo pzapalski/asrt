@@ -1,0 +1,5 @@
+assert(condition === true);
+assert(condition !== true);
+assert(condition !== true, 'test');
+assert(condition !== true, '', 'test');
+assert(condition !== true, '', '', 'test');

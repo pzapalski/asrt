@@ -1,0 +1,5 @@
+never(condition === true);
+never(condition !== true);
+never(condition !== true, 'test');
+never(condition !== true, '', 'test');
+never(condition !== true, '', '', 'test');

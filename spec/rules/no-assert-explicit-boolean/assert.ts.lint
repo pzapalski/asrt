@@ -1,0 +1,16 @@
+assert(condition === true);
+assert(condition !== true);
+assert(something1 === something2, 'test');
+assert(something1 !== something2, 'test');
+assert(something1 === something2 || true, 'test');
+                                    ~~~~ [Assertions cannot be called with condition argument "true" directly]
+assert(something1 !== something2 || false, 'test');
+                                    ~~~~~ [Assertions cannot be called with condition argument "false" directly]
+assert(something1 === something2 || 0 < 1 || true, 'test');
+                                             ~~~~ [Assertions cannot be called with condition argument "true" directly]
+assert(something1 !== something2 || 1 < 0 || false, 'test');
+                                             ~~~~~ [Assertions cannot be called with condition argument "false" directly]
+assert(true, 'test');
+       ~~~~ [Assertions cannot be called with condition argument "true" directly]
+assert(false, 'test');
+       ~~~~~ [Assertions cannot be called with condition argument "false" directly]

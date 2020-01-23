@@ -1,0 +1,16 @@
+never(condition !== true);
+never(condition === true);
+never(something1 === something2, 'test');
+never(something1 !== something2, 'test');
+never(something1 === something2 || true, 'test');
+                                   ~~~~ [Assertions cannot be called with condition argument "true" directly]
+never(something1 !== something2 || false, 'test');
+                                   ~~~~~ [Assertions cannot be called with condition argument "false" directly]
+never(something1 === something2 || 0 < 1 || true, 'test');
+                                            ~~~~ [Assertions cannot be called with condition argument "true" directly]
+never(something1 !== something2 || 1 < 0 || false, 'test');
+                                            ~~~~~ [Assertions cannot be called with condition argument "false" directly]
+never(true, 'test');
+      ~~~~ [Assertions cannot be called with condition argument "true" directly]
+never(false, 'test');
+      ~~~~~ [Assertions cannot be called with condition argument "false" directly]

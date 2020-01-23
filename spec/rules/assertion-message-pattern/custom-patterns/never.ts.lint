@@ -1,0 +1,13 @@
+never(condition);
+never(condition, variable);
+never(condition, 'abc', '[abcd-efgh]');
+never(condition, 'abc', '');
+                        ~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+never(condition, '', '[abcd-efgh]');
+                 ~~ [Assertion message 1 has to match /^.{3,}$/.]
+never(condition, 'ab', 'cd');
+                 ~~~~ [Assertion message 1 has to match /^.{3,}$/.]
+                       ~~~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+never(condition, 'abc', '[abcd-efgh]', '');
+never(condition, 'abc', '[abcd-efgh]', '', '');
+never(condition, variable, '[abcd-efgh]', '', '');

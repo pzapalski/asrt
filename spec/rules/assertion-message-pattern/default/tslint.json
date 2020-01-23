@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "assertion-message-pattern": true
+  },
+  "rulesDirectory": [
+    "../../../../rules"
+  ]
+}
