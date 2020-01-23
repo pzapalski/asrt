@@ -1,0 +1,19 @@
+# IDEs
+.idea
+
+# Node
+node_modules
+
+# TypeScript output
+*.js.map
+*.js
+*.d.ts
+tsconfig.tsbuildinfo
+
+# Stryker Mutator
+.stryker-tmp
+reports
+!stryker.conf.js
+
+# test spec files
+!spec/**/*.*
