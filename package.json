@@ -1,0 +1,47 @@
+{
+  "name": "asrt",
+  "version": "1.0.0",
+  "description": "A small library to verify preconditions and postconditions.",
+  "scripts": {
+    "build": "tsc -p src/tsconfig.json",
+    "build:watch": "tsc -p src/tsconfig.json -w",
+    "lint": "tslint --project ./src",
+    "test": "npm run build && npm run test:rules && npm run test:integration",
+    "test:rules": "tslint --test spec/rules/**/tslint.json",
+    "test:integration": "jasmine --config=jasmine.json",
+    "test:mutation": "npx stryker run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pzapalski/asrt.git"
+  },
+  "keywords": [
+    "assertions",
+    "assert",
+    "invariants",
+    "invariant",
+    "hoare",
+    "design",
+    "by",
+    "contract",
+    "dbc"
+  ],
+  "author": "Piotr Zapalski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pzapalski/asrt/issues"
+  },
+  "homepage": "https://github.com/pzapalski/asrt#readme",
+  "devDependencies": {
+    "@stryker-mutator/core": "^2.5.0",
+    "@stryker-mutator/html-reporter": "^2.5.0",
+    "@stryker-mutator/jasmine-framework": "^2.5.0",
+    "@stryker-mutator/jasmine-runner": "^2.5.0",
+    "@stryker-mutator/typescript": "^2.5.0",
+    "jasmine": "^3.5.0",
+    "randexp": "^0.5.3",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {}
+}
