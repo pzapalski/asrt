@@ -1,6 +1,6 @@
 {
   "name": "asrt",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A small library to verify preconditions and postconditions.",
   "scripts": {
     "build": "tsc -p src/tsconfig.json",
@@ -38,12 +38,13 @@
     "@stryker-mutator/jasmine-runner": "^2.5.0",
     "@stryker-mutator/typescript": "^2.5.0",
     "@types/node": "^13.5.0",
-    "jasmine": "^3.5.0",
-    "randexp": "^0.5.3",
-    "tslint": "^6.0.0",
-    "typescript": "^3.7.5"
+    "jasmine": "^3.5.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5",
+    "randexp": "^0.5.3"
+  },
   "types": "",
   "files": [
     "**/*.js",
