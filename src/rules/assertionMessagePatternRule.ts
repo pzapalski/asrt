@@ -49,7 +49,15 @@ function walk(context: WalkContext<any>): void {
       if (ASSERTION_EXPRESSION_NAMES.includes((node as CallExpression).expression.getText())) {
         const patterns = context.options ?? [];
         const args = Array.from((node as CallExpression).arguments);
-        args.shift();
+        const firstArgument = args.shift();
+        if (args.length < patterns.length) {
+          const lastArgument = args[args.length - 1] ?? firstArgument;
+          context.addFailure(
+            lastArgument.getEnd(),
+            lastArgument.getEnd() + 1,
+            getArgumentCountFailureString(patterns.length, args.length)
+          )
+        }
         args.forEach((arg, index) => {
           const option = patterns[index];
           if (option === false) {
@@ -66,8 +74,8 @@ function walk(context: WalkContext<any>): void {
           context.addFailureAt(
             arg.getStart(),
             arg.getWidth(),
-            getFailureString(pattern, index + 1),
-            fix(arg, pattern)
+            getPatternFailureString(pattern, index + 1),
+            fixPatternFailure(arg, pattern)
           );
         });
       }
@@ -76,15 +84,26 @@ function walk(context: WalkContext<any>): void {
   }
 }
 
-function getFailureString(pattern: RegExp, index: number) {
+function getPatternFailureString(pattern: RegExp, index: number) {
   return `Assertion message ${index} has to match ${pattern}.`
 }
 
-function fix(expression: Expression, pattern: RegExp): Lint.Replacement {
+function fixPatternFailure(expression: Expression, pattern: RegExp): Lint.Replacement {
   const randExp = new RandExp(pattern);
   const fixedText = randExp.gen();
   const start = expression.getStart();
   const end = expression.getEnd();
   const length = end - start;
-  return new Lint.Replacement(start, length, `"${fixedText}"`);
+  const quoteType = expression.getText()[0];
+  return new Lint.Replacement(start, length, `${quoteType}${fixedText}${quoteType}`);
+}
+
+function getArgumentCountFailureString(expected: number, provided: number) {
+  if (provided === 0) {
+    return `Expected ${expected} assertion messages but none were provided.`;
+  }
+  if (provided === 1) {
+    return `Expected ${expected} assertion messages but only ${provided} was provided.`;
+  }
+  return `Expected ${expected} assertion messages but only ${provided} were provided.`;
 }
