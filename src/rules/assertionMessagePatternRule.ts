@@ -103,12 +103,12 @@ function getArgumentCountFailureString(expected: number, provided: number) {
 
 function fixPatternFailure(expression: Expression, pattern: RegExp): Lint.Replacement {
   const randExp = new RandExp(pattern);
-  const fixedText = randExp.gen();
+  const fix = randExp.gen();
   const start = expression.getStart();
   const end = expression.getEnd();
   const length = end - start;
   const quoteType = expression.getText()[0];
-  return new Lint.Replacement(start, length, `${quoteType}${fixedText}${quoteType}`);
+  return new Lint.Replacement(start, length, `${quoteType}${fix}${quoteType}`);
 }
 
 function fixArgumentCountFailure(start: number, patterns: ReadonlyArray<RegExp | false>): Lint.Replacement {
