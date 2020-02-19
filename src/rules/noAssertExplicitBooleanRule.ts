@@ -49,7 +49,8 @@ function walk(context: WalkContext<void>): void {
 }
 
 function walkBinaryExpression(context: WalkContext<void>, expression: BinaryExpression): void {
-  if (expression.operatorToken.kind !== SyntaxKind.EqualsEqualsEqualsToken) {
+  if (expression.operatorToken.kind !== SyntaxKind.EqualsEqualsEqualsToken
+    && expression.operatorToken.kind !== SyntaxKind.ExclamationEqualsEqualsToken) {
     [expression.left, expression.right].forEach(side => {
       if (side.kind === SyntaxKind.TrueKeyword || side.kind === SyntaxKind.FalseKeyword) {
         return context.addFailureAtNode(side, getFailureString(side.getText()));
