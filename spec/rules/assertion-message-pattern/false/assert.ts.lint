@@ -4,10 +4,10 @@ assert(condition, variable);
                           ~ [Expected 2 assertion messages but only 1 was provided.]
 assert(condition, 'abc', '[abcd-efgh]');
 assert(condition, 'abc', '');
-                         ~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+                         ~~ [Assertion message 2 has to match /^\[abcd-efgh\]$/.]
 assert(condition, '', '[abcd-efgh]');
 assert(condition, 'ab', 'cd');
-                        ~~~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+                        ~~~~ [Assertion message 2 has to match /^\[abcd-efgh\]$/.]
 assert(condition, 'abc', '[abcd-efgh]', '');
 assert(condition, 'abc', '[abcd-efgh]', '', '');
 assert(condition, variable, '[abcd-efgh]', '', '');

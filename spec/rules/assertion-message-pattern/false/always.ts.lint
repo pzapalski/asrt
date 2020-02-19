@@ -1,13 +1,13 @@
-assert(condition);
+always(condition);
                 ~ [Expected 2 assertion messages but none were provided.]
 always(condition, variable);
                           ~ [Expected 2 assertion messages but only 1 was provided.]
 always(condition, 'abc', '[abcd-efgh]');
 always(condition, 'abc', '');
-                         ~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+                         ~~ [Assertion message 2 has to match /^\[abcd-efgh\]$/.]
 always(condition, '', '[abcd-efgh]');
 always(condition, 'ab', 'cd');
-                        ~~~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+                        ~~~~ [Assertion message 2 has to match /^\[abcd-efgh\]$/.]
 always(condition, 'abc', '[abcd-efgh]', '');
 always(condition, 'abc', '[abcd-efgh]', '', '');
 always(condition, variable, '[abcd-efgh]', '', '');

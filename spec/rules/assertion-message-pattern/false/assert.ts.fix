@@ -1,0 +1,9 @@
+assert(condition, '', '[abcd-efgh]');
+assert(condition, variable, '[abcd-efgh]');
+assert(condition, 'abc', '[abcd-efgh]');
+assert(condition, 'abc', '[abcd-efgh]');
+assert(condition, '', '[abcd-efgh]');
+assert(condition, 'ab', '[abcd-efgh]');
+assert(condition, 'abc', '[abcd-efgh]', '');
+assert(condition, 'abc', '[abcd-efgh]', '', '');
+assert(condition, variable, '[abcd-efgh]', '', '');

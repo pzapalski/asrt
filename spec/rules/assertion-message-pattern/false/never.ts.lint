@@ -4,10 +4,10 @@ never(condition, variable);
                          ~ [Expected 2 assertion messages but only 1 was provided.]
 never(condition, 'abc', '[abcd-efgh]');
 never(condition, 'abc', '');
-                        ~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+                        ~~ [Assertion message 2 has to match /^\[abcd-efgh\]$/.]
 never(condition, '', '[abcd-efgh]');
 never(condition, 'ab', 'cd');
-                       ~~~~ [Assertion message 2 has to match /^\[[a-z0-9]{4}-[a-z0-9]{4}]$/.]
+                       ~~~~ [Assertion message 2 has to match /^\[abcd-efgh\]$/.]
 never(condition, 'abc', '[abcd-efgh]', '');
 never(condition, 'abc', '[abcd-efgh]', '', '');
 never(condition, variable, '[abcd-efgh]', '', '');

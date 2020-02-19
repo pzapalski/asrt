@@ -1,0 +1,9 @@
+never(condition, 'abc', '[abcd-efgh]');
+never(condition, variable, '[abcd-efgh]');
+never(condition, 'abc', '[abcd-efgh]');
+never(condition, 'abc', '[abcd-efgh]');
+never(condition, 'abc', '[abcd-efgh]');
+never(condition, 'abc', '[abcd-efgh]');
+never(condition, 'abc', '[abcd-efgh]', '');
+never(condition, 'abc', '[abcd-efgh]', '', '');
+never(condition, variable, '[abcd-efgh]', '', '');

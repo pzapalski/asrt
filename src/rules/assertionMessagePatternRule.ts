@@ -52,10 +52,13 @@ function walk(context: WalkContext<any>): void {
         const firstArgument = args.shift();
         if (args.length < patterns.length) {
           const lastArgument = args[args.length - 1] ?? firstArgument;
-          context.addFailure(
+          const numberOfMissingArgs = patterns.length - args.length;
+          const missingPatterns = patterns.slice(patterns.length - numberOfMissingArgs);
+          return context.addFailure(
             lastArgument.getEnd(),
             lastArgument.getEnd() + 1,
-            getArgumentCountFailureString(patterns.length, args.length)
+            getArgumentCountFailureString(patterns.length, args.length),
+            fixArgumentCountFailure(lastArgument.getEnd(), missingPatterns)
           )
         }
         args.forEach((arg, index) => {
@@ -71,7 +74,7 @@ function walk(context: WalkContext<any>): void {
           if (pattern.test(stringValue)) {
             return;
           }
-          context.addFailureAt(
+          return context.addFailureAt(
             arg.getStart(),
             arg.getWidth(),
             getPatternFailureString(pattern, index + 1),
@@ -88,6 +91,16 @@ function getPatternFailureString(pattern: RegExp, index: number) {
   return `Assertion message ${index} has to match ${pattern}.`
 }
 
+function getArgumentCountFailureString(expected: number, provided: number) {
+  if (provided === 0) {
+    return `Expected ${expected} assertion messages but none were provided.`;
+  }
+  if (provided === 1) {
+    return `Expected ${expected} assertion messages but only ${provided} was provided.`;
+  }
+  return `Expected ${expected} assertion messages but only ${provided} were provided.`;
+}
+
 function fixPatternFailure(expression: Expression, pattern: RegExp): Lint.Replacement {
   const randExp = new RandExp(pattern);
   const fixedText = randExp.gen();
@@ -98,12 +111,13 @@ function fixPatternFailure(expression: Expression, pattern: RegExp): Lint.Replac
   return new Lint.Replacement(start, length, `${quoteType}${fixedText}${quoteType}`);
 }
 
-function getArgumentCountFailureString(expected: number, provided: number) {
-  if (provided === 0) {
-    return `Expected ${expected} assertion messages but none were provided.`;
-  }
-  if (provided === 1) {
-    return `Expected ${expected} assertion messages but only ${provided} was provided.`;
-  }
-  return `Expected ${expected} assertion messages but only ${provided} were provided.`;
+function fixArgumentCountFailure(start: number, patterns: ReadonlyArray<RegExp | false>): Lint.Replacement {
+  const fixes = patterns.map((pattern, index) => {
+    if (pattern === false) {
+      return `''`;
+    }
+    const randExp = new RandExp(pattern);
+    return `'${randExp.gen()}'`;
+  });
+  return Lint.Replacement.appendText(start, ', ' + fixes.join(', '));
 }

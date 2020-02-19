@@ -3,8 +3,8 @@
     "assertion-message-pattern": [
       true,
       [
-        "^.{3,}$",
-        "^\\[[a-z0-9]{4}-[a-z0-9]{4}]$"
+        "^abc$",
+        "^\\[abcd-efgh\\]$"
       ]
     ]
   },

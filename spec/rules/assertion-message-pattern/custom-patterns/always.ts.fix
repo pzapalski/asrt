@@ -1,0 +1,9 @@
+always(condition, 'abc', '[abcd-efgh]');
+always(condition, variable, '[abcd-efgh]');
+always(condition, 'abc', '[abcd-efgh]');
+always(condition, 'abc', '[abcd-efgh]');
+always(condition, 'abc', '[abcd-efgh]');
+always(condition, 'abc', '[abcd-efgh]');
+always(condition, 'abc', '[abcd-efgh]', '');
+always(condition, 'abc', '[abcd-efgh]', '', '');
+always(condition, variable, '[abcd-efgh]', '', '');
