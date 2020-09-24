@@ -4,11 +4,11 @@ import {BinaryExpression, forEachChild, Node, SourceFile, SyntaxKind} from "type
 
 const ASSERTION_EXPRESSION_NAMES = ['assert', 'always', 'never'];
 
-export class Rule extends Lint.Rules.AbstractRule {
+class Rule extends Lint.Rules.AbstractRule {
   static readonly metadata: IRuleMetadata = {
-    ruleName: 'no-missing-assert-error-code',
+    ruleName: 'no-assert-explicit-boolean',
     type: 'maintainability',
-    description: `Forces.`,
+    description: `Disallows calling always/never/assert with just a boolean.`,
     options: null,
     optionsDescription: 'Not configurable.',
     rationale: `Disallowing passing explicit boolean true or false to the assert() method reduces the amount of false-positives in Stryker Mutator reports.`,
