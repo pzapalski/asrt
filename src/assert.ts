@@ -21,4 +21,4 @@ export function assert(condition: boolean, ...messages: ReadonlyArray<string>): 
   if (condition !== true) {
     throw new AssertionError(...messages);
   }
-};
+}
