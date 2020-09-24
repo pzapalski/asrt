@@ -5,9 +5,8 @@
   "scripts": {
     "build": "tsc -p src/tsconfig.json",
     "build:watch": "tsc -p src/tsconfig.json -w",
-    "lint": "tslint --project ./src",
-    "test": "npm run build && npm run test:rules && npm run test:integration",
-    "test:rules": "tslint --test spec/rules/**/tslint.json",
+    "test": "npm run build && npm run test:tslint && npm run test:integration",
+    "test:tslint": "tslint --test spec/rules/**/tslint.json",
     "test:integration": "jasmine --config=jasmine.json",
     "test:mutation": "npx stryker run",
     "prepublish": "npm run build"
@@ -45,12 +44,13 @@
     "typescript": "^3.7.5",
     "randexp": "^0.5.3"
   },
-  "types": "",
+  "types": "index.d.ts",
   "files": [
     "**/*.js",
     "**/*.js.map",
     "**/*.d.ts",
     "!spec/**/*.*",
-    "!stryker.conf.js"
+    "!stryker.conf.js",
+    "!eslint-plugin/**/*.*"
   ]
 }
