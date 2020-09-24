@@ -51,6 +51,6 @@
     "**/*.d.ts",
     "!spec/**/*.*",
     "!stryker.conf.js",
-    "!eslint-plugin/**/*.*"
+    "!eslint-plugin/*"
   ]
 }
