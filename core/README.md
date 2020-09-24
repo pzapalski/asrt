@@ -5,7 +5,7 @@ A small library to verify preconditions and postconditions.
 ## Usage
 
 ```javascript
-import {always} from 'asrt';
+import {always} from 'core';
 
 function add(x, y) {
     always(typeof x === 'number', "Argument 'x' has to be a number.");
