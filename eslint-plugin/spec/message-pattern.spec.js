@@ -111,5 +111,29 @@ ruleTester.run(
         ],
         output: `${name}(i > 0, "abc", "[abcd-efgh]");`
       },
+      {
+        code: `${name}(i > 0, '');`,
+        options: [['^abc$']],
+        errors: [{
+          message: 'Assertion message 1 has to match /^abc$/.',
+          line: 1,
+          endLine: 1,
+          column: name.length + 9,
+          endColumn: name.length + 11
+        }],
+        output: `${name}(i > 0, 'abc');`
+      },
+      {
+        code: `${name}(i > 0, \`\`);`,
+        options: [['^abc$']],
+        errors: [{
+          message: 'Assertion message 1 has to match /^abc$/.',
+          line: 1,
+          endLine: 1,
+          column: name.length + 9,
+          endColumn: name.length + 11
+        }],
+        output: `${name}(i > 0, \`abc\`);`
+      },
     ]).flat(1)
   });
