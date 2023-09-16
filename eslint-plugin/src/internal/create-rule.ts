@@ -1,9 +1,9 @@
-import {ESLintUtils} from "@typescript-eslint/experimental-utils";
+import {ESLintUtils} from '@typescript-eslint/utils';
 
-type ArgumentType<T extends (...args: any) => any> = T extends (args: infer A) => any ? A : any;
-type FirstArgumentType<T extends (...args: any) => any> = T extends (...args: [infer A, ...any[]]) => any ? A : any;
+type ArgumentType<T extends (...args: unknown[]) => unknown> = T extends (args: infer A) => unknown ? A : unknown;
+type FirstArgumentType<T extends (...args: unknown[]) => unknown> = T extends (...args: [infer A, ...unknown[]]) => unknown ? A : unknown;
 
-export type InferredRuleFactory = ReturnType<typeof ESLintUtils.RuleCreator>;
+export type InferredRuleFactory = ReturnType<typeof ESLintUtils['RuleCreator']>;
 export type InferredRuleContext = FirstArgumentType<InferredRuleConfig['create']>;
 export type InferredRuleConfig = ArgumentType<InferredRuleFactory>;
 

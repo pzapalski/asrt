@@ -1,4 +1,4 @@
-import {AST_NODE_TYPES} from '@typescript-eslint/experimental-utils';
+import {AST_NODE_TYPES} from '@typescript-eslint/utils';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import {CallExpression, Expression} from "@typescript-eslint/types/dist/ts-estree";
@@ -13,8 +13,8 @@ module.exports = createRule<Options>({
         type: 'suggestion',
         docs: {
             description: 'Checks if always(), never(), and assert() messages match a pattern.',
-            category: 'Best Practices',
-            recommended: 'error'
+            // category: 'Best Practices',
+            // recommended: 'error'
         },
         messages: {
             missing: "missing",
@@ -23,14 +23,7 @@ module.exports = createRule<Options>({
         schema: [{
             type: 'array',
             items: {
-                oneOf: [
-                    {
-                        type: 'string'
-                    },
-                    {
-                        const: false
-                    }
-                ]
+                    type: 'string'
             }
         }],
         fixable: "code"
@@ -42,7 +35,7 @@ module.exports = createRule<Options>({
 
         return {
             CallExpression: (node: CallExpression) => {
-                if (ASSERTION_EXPRESSION_NAMES.includes((node.callee as any).name)) {
+                if (ASSERTION_EXPRESSION_NAMES.includes(node.callee.name)) {
                     const patterns = options ?? [];
                     const args = [...node.arguments];
                     const firstArgument = args.shift();

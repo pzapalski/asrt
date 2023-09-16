@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {RuleTester} = require("eslint");
 const rule = require('../rules/message-pattern');
 

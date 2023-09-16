@@ -14,8 +14,8 @@ module.exports = createRule({
     type: 'suggestion',
     docs: {
       description: 'Disallows calling always/never/assert with just a boolean.',
-      category: 'Best Practices',
-      recommended: 'error'
+      // category: 'Best Practices',
+      // recommended: 'error'
     },
     messages: {
       bool: "boolean",
@@ -23,22 +23,15 @@ module.exports = createRule({
     schema: [{
       type: 'array',
       items: {
-        oneOf: [
-          {
             type: 'string'
-          },
-          {
-            const: false
-          }
-        ]
-      }
+      },
     }]
   },
   defaultOptions: [[]],
   create: (context) => {
     return {
       CallExpression: (node: CallExpression) => {
-        if (ASSERTION_EXPRESSION_NAMES.includes((node.callee as any).name)) {
+        if (ASSERTION_EXPRESSION_NAMES.includes(node.callee.name)) {
           const conditionArgument = node.arguments[0];
           if (conditionArgument.type === AST_NODE_TYPES.Literal) {
             return checkLiteral(conditionArgument);
